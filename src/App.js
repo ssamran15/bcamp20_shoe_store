@@ -8,7 +8,7 @@ import Kids from './components/Kids';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {Container, Grid, Typography } from '@material-ui/core';
+import {Container, Grid } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
