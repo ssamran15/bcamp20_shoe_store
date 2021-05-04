@@ -1,7 +1,9 @@
 import React from 'react';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './components/Home';
 import Men from './components/Men';
+import MenDescript from './components/MenDescript';
 import Women from './components/Women';
 import Kids from './components/Kids';
 
@@ -39,6 +41,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path='men' element={<Men />} />
+              <Route path='/men/:shoe_id' element={<MenDescript />} />
               <Route path='women' element={<Women />} />
               <Route path='kids' element={<Kids />} />
 
@@ -47,8 +50,7 @@ function App() {
         </main>
 
       </Container>
-
-
+      <Footer title="" description="" />
     </Router>
   );
 }

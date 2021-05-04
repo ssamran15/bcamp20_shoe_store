@@ -8,11 +8,18 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import AddShoppingCartOutlined from '@material-ui/icons/AddShoppingCartOutlined'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
     },
+    prodLinks: {
+        textDecoration: 'none',
+        color: 'black',
+    }
 });
 
 const Men = () => {
@@ -33,39 +40,53 @@ const Men = () => {
     }, [])
     const classes = useStyles();
 
-    if (menSneakers.length === 0)
-    {
+    if (menSneakers.length === 0) {
         return 'Loading...';
     }
+
+    const dummUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-White-Oreo-2021-GS.jpg?";
 
     return (
         <Grid cotainer spacing={2} >
             <Grid item xs={12}>
                 <Grid container justify="center" spacing={2}>
                     {menSneakers.map((value) => (
-                        <Grid key={value} item>
+                        <Grid key={value.id} item xs={12} md={4} lg={4}>
 
                             <Card className={classes.root}>
                                 <CardActionArea>
+                                    <Link to={`/men/${value.id}`} key={value.id} className={classes.prodLinks}>
                                     <CardMedia
                                         component="img"
                                         alt={value.name}
                                         height="140"
-                                        image={value.media.imageUrl}
+                                        image={value.media.imageUrl === null ? dummUrl : value.media.imageUrl}
                                         title={value.name}
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
                                             {value.name}
                                         </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
+                                        {/*<Typography variant="body2" color="textSecondary" component="p">
                                             {value.title}
-                                        </Typography>
+                                        </Typography>*/}
                                     </CardContent>
+                                    </Link>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button size="small" color="primary">Share</Button>
-                                    <Button size="small" color="primary">Learn More</Button>
+                                    <Grid container justify="flex-start">
+                                        <FavoriteBorderIcon />
+                                        <Typography variant="body1" display="block" gutterBottom>
+                                            {Math.floor(Math.random() * 500)}
+                                        </Typography>
+                                    
+                                    <Button size="small" color="primary">
+                                        <AddShoppingCartOutlined />
+                                    </Button>
+                                    </Grid>
+                                    <Grid container justify="flex-end">
+                                        <Typography variant="h6" component="h6">Price: ${value.retailPrice}</Typography>
+                                    </Grid>
                                 </CardActions>
                             </Card>
 
