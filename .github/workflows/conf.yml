@@ -20,7 +20,7 @@ jobs:
       #- name: install yarn
       #  run: sudo apt update && sudo apt install yarn
       - name: Install React Routers
-        run: npm install history@5 react-router-dom@6
+        run: npm install react-router@next react-router-dom@next
       - name: Install Material UI
         run: npm install @material-ui/core
       - name: Install Material UI Icons
