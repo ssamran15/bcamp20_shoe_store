@@ -1,7 +1,7 @@
 ---
 # Configuration file, to deploy the BootCamp2020 projects on Surge
 
-name: "Deploy Covid Tracker on Surge.sh."
+name: "Deploy Shoe Store on Surge.sh."
 
 on: [push]
 
