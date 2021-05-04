@@ -32,4 +32,4 @@ jobs:
       - name: Install Surge
         run: npm install -g surge
       - name: Run surge
-        run: surge ./build bcamp20_covid_track.surge.sh --token ${{ secrets.PROJSHOE_SECRET }}
+        run: surge ./build bcamp20_shoe_store.surge.sh --token ${{ secrets.PROJSHOE_SECRET }}
