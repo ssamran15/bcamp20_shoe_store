@@ -25,14 +25,14 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: "#a0937d",
             color: '#FFFF'
-         },
+        },
     },
     mainMenu: {
         flexGrow: 1,
     },
     title: {
         flexGrow: 0,
-        minWidth: '15%',
+        //minWidth: '13%',
         display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         backgroundColor: '#393e46',
         //fontFamily: '"Segoe UI"',
-        padding: '5px 10px 5px 20px',
+        padding: '5px 10px 5px 10px',
     },
     search: {
         position: 'relative',
@@ -67,7 +67,7 @@ export default function Header({ sections }) {
             <AppBar position="static" color="inherit">
                 <Toolbar >
                     <Typography className={classes.title} variant="h6" noWrap>
-                        Sams Shoe Store
+                        Sneakers Store
                     </Typography>
 
                     <Typography className={classes.mainMenu}>
@@ -80,10 +80,11 @@ export default function Header({ sections }) {
                             <SearchIcon />
                         </IconButton>
                         <IconButton aria-label="Show your Cart" >
-                            <Badge badgeContent={1} color="primary">
-                                <ShoppingCartIcon />
-                            </Badge>
-
+                            <Link to="/cart">
+                                <Badge badgeContent={1} color="primary">
+                                    <ShoppingCartIcon />
+                                </Badge>
+                            </Link>
                         </IconButton>
                     </div>
                 </Toolbar>

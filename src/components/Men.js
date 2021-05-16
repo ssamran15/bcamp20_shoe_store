@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import AddShoppingCartOutlined from '@material-ui/icons/AddShoppingCartOutlined'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+//import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -19,14 +19,17 @@ const useStyles = makeStyles({
     prodLinks: {
         textDecoration: 'none',
         color: 'black',
-    }
+    },
+    btnAddCart: {
+        width: 100,
+    },
 });
 
 const Men = () => {
     const [menSneakers, setSneakers] = useState([]);
     useEffect(() => {
         async function getSneakers() {
-            const rsp = await fetch('https://v1-sneakers.p.rapidapi.com/v1/sneakers?limit=15', {
+            const rsp = await fetch('https://v1-sneakers.p.rapidapi.com/v1/sneakers?limit=15&gender=men', {
                 "method": "GET",
                 "headers": {
                     "x-rapidapi-key": "fd2b36b56fmsh53c0d1f67e4b0dcp1a2914jsn7a77767fe69a",
@@ -41,7 +44,9 @@ const Men = () => {
     const classes = useStyles();
 
     if (menSneakers.length === 0) {
-        return 'Loading...';
+        return (<Typography gutterBottom variant="h5" component="h2">
+            Loading...
+        </Typography>);
     }
 
     const dummUrl = "https://images.stockx.com/images/Air-Jordan-4-Retro-White-Oreo-2021-GS.jpg?";
@@ -51,38 +56,41 @@ const Men = () => {
             <Grid item xs={12}>
                 <Grid container justify="center" spacing={2}>
                     {menSneakers.map((value) => (
-                        <Grid key={value.id} item xs={12} md={4} lg={4}>
+                        <Grid key={value.id} item xs={12} md={3} lg={3}>
 
                             <Card className={classes.root}>
                                 <CardActionArea>
                                     <Link to={`/men/${value.id}`} key={value.id} className={classes.prodLinks}>
-                                    <CardMedia
-                                        component="img"
-                                        alt={value.name}
-                                        height="140"
-                                        image={value.media.imageUrl === null ? dummUrl : value.media.imageUrl}
-                                        title={value.name}
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            {value.name}
-                                        </Typography>
-                                        {/*<Typography variant="body2" color="textSecondary" component="p">
+                                        <CardMedia
+                                            component="img"
+                                            alt={value.name}
+                                            image={value.media.imageUrl === null ? dummUrl : value.media.imageUrl}
+                                            title={value.name}
+                                        />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                {value.name}
+                                            </Typography>
+                                            {/*<Typography variant="body2" color="textSecondary" component="p">
                                             {value.title}
                                         </Typography>*/}
-                                    </CardContent>
+
+                                        </CardContent>
                                     </Link>
                                 </CardActionArea>
                                 <CardActions>
                                     <Grid container justify="flex-start">
-                                        <FavoriteBorderIcon />
+                                        {/* <FavoriteBorderIcon />
                                         <Typography variant="body1" display="block" gutterBottom>
                                             {Math.floor(Math.random() * 500)}
-                                        </Typography>
-                                    
-                                    <Button size="small" color="primary">
-                                        <AddShoppingCartOutlined />
-                                    </Button>
+                                        </Typography> */}
+                                        
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            size="small"                                            
+                                            startIcon={<AddShoppingCartOutlined />}
+                                        >Add to Cart</Button>
                                     </Grid>
                                     <Grid container justify="flex-end">
                                         <Typography variant="h6" component="h6">Price: ${value.retailPrice}</Typography>
