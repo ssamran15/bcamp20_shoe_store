@@ -3,8 +3,7 @@ import { AppBar, Badge, Toolbar, IconButton, Typography } from '@material-ui/cor
 import { fade, makeStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import SearchIcon from '@material-ui/icons/Search';
-//import Link from '@material-ui/core/Link';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: "#a0937d",
             color: '#FFFF'
         },
+    },
+    activeLink: {
+        backgroundColor: "#a0937d",
+        color: '#FFFF'        
     },
     mainMenu: {
         flexGrow: 1,
@@ -72,7 +75,12 @@ export default function Header({ sections }) {
 
                     <Typography className={classes.mainMenu}>
                         {sections.map((val, index) => {
-                            return <Link to={val.url} className={classes.menuLinks} key={index}>{val.title}</Link>
+                            return (<NavLink exact to={val.url} 
+                                className={classes.menuLinks} 
+                                key={index}
+                                activeClassName={classes.activeLink}>
+                                {val.title}
+                                </NavLink>)
                         })}
                     </Typography>
                     <div className={classes.search}>
